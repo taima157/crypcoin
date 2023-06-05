@@ -55,7 +55,7 @@ export default function Header() {
               <HiChevronDown className="h-6 w-6 text-yellow-500" />
             </button>
             {coinSelect && (
-              <div className="absolute top-10 h-48 bg-zinc-900 flex flex-col w-64 rounded-md p-2 overflow-hidden overflow-y-scroll gap-2 z-50">
+              <div className="absolute top-10 h-48 bg-zinc-900 flex flex-col w-64 rounded-md p-2 overflow-hidden overflow-y-scroll gap-2 z-40">
                 {cryptoContext.topCryptoCoins?.map((cryptoCoin) => {
                   return (
                     <CoinCard
@@ -113,7 +113,7 @@ export default function Header() {
               <HiChevronDown className="h-6 w-6 text-yellow-500" />
             </button>
             {fiatList && (
-              <div className="absolute right-0 md:right-0 top-10 h-48 bg-zinc-900 flex flex-col w-44 rounded-md p-2 overflow-hidden overflow-y-scroll gap-2 z-50">
+              <div className="absolute right-0 md:right-0 top-10 h-48 bg-zinc-900 flex flex-col w-44 rounded-md p-2 overflow-hidden overflow-y-scroll gap-2 z-40">
                 {cryptoContext.fiatList?.map((fiat, index) => {
                   return (
                     <button

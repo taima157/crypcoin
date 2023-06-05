@@ -24,7 +24,7 @@ export default function SideBar() {
         cryptoContext.sideBarOpen
           ? "w-4/5 absolute md:w-1/2 lg:w-1/4 z-50 p-5 h-screen"
           : "w-0"
-      } duration-300 bg-zinc-900 flex flex-col gap-10 overflow-hidden`}
+      } duration-300 bg-zinc-900 flex flex-col gap-10 overflow-hidden z-50`}
     >
       <div className="flex justify-between items-center">
         <a href="/">
