@@ -26,7 +26,7 @@ export default function SearchedCoin({ coin, toggleModal }: PropsType) {
       className="bg-slate-900/30 flex w-full backdrop-blur-md rounded-md border-2 border-slate-800 shadow-xl"
     >
       <div className="w-1 bg-purple-600 h-full rounded-tl-md rounded-bl-md" />
-      <div className="p-3 gap-2 flex flex-col sm:flex-row sm:items-center w-full justify-between">
+      <div className="p-3 sm:p-5 gap-2 flex flex-col sm:flex-row sm:items-center w-full justify-between">
         <div className="flex gap-2 items-center">
           <img className="h-8 w-8" src={coin.icon} alt={`Ícone ${coin.name}`} />
           <span className="text-sm text-slate-400 font-semibold">{coin.name}</span>

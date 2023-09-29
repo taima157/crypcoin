@@ -59,7 +59,7 @@ export default function Header() {
         <div className="fixed transition-opacity overflow-y-auto z-10 inset-0 w-screen h-screen flex justify-center items-center">
           <div
             onClick={toggleIsFiatModalOpen}
-            className="absolute w-full h-full "
+            className="absolute w-full h-full bg-slate-950/50 backdrop-blur-sm"
           />
           <div className="flex flex-col p-5 backdrop-blur-xl border-2 border-slate-900 bg-slate-900/30 w-[90%] md:2/3 lg:w-[800px] rounded-xl gap-10 shadow-xl drop-shadow-xl">
             <h3 className="self-start font-semibold text-lg text-slate-400">
@@ -88,12 +88,12 @@ export default function Header() {
       )}
 
       {isSearchModalOpen && (
-        <div className="fixed transition-opacity overflow-y-auto z-10 inset-0 w-screen h-screen flex justify-center">
+        <div className="fixed transition-opacity overflow-y-auto z-10 inset-0 w-screen h-screen flex justify-center items-center">
           <div
             onClick={toggleIsSearchModalOpen}
-            className="absolute w-full h-full "
+            className="absolute w-full h-full bg-slate-950/50 backdrop-blur-sm"
           />
-          <div className="mt-20 z-50 flex flex-col p-5 h-1/2 backdrop-blur-xl border-2 border-slate-900 bg-slate-900/30 w-[90%] md:2/3 lg:w-[800px] rounded-xl gap-10 shadow-xl drop-shadow-xl">
+          <div className="z-50 flex flex-col p-5 h-2/3 backdrop-blur-xl border-2 border-slate-900 bg-slate-900/30 w-[90%] md:2/3 lg:w-[800px] rounded-xl gap-10 shadow-xl drop-shadow-xl">
             <h3 className="self-start font-semibold text-lg text-slate-400">
               Pesquise por uma criptomoeda.
             </h3>
@@ -109,7 +109,7 @@ export default function Header() {
               <MagnifyingGlassIcon className="w-8 text-slate-600" />
             </div>
 
-            <div className="flex flex-col items-start gap-5 pr-3 h-64 overflow-y-auto ">
+            <div className="flex flex-col items-start gap-5 pr-3 flex-1 overflow-y-auto ">
               {coinList &&
                 coinList.map((coin) => {
                   if (searchInput !== "") {
