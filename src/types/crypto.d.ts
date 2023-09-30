@@ -25,6 +25,11 @@ export type Fiat = {
   imageUrl: string;
 };
 
+export type ChartData = {
+  datetime: string | number | Array;
+  price: string | number | Array;
+};
+
 export type CryptoContextType = {
   currentCoin: Coin | null;
   coinList: Coin[] | null;
@@ -33,4 +38,5 @@ export type CryptoContextType = {
   currentFiat: Fiat | null;
   setCurrentFiat: Dispatch<SetStateAction<Fiat | null>>;
   changeCurrentCoin: (coin: Coin) => void;
+  chartData: ChartData[] | null;
 };

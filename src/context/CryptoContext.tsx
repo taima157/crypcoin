@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
-import { Coin, CryptoContextType, Fiat } from "../types/crypto";
+import { ChartData, Coin, CryptoContextType, Fiat } from "../types/crypto";
 import { api } from "../services/api";
+import moment from "moment";
 
 type ProviderProps = {
   children: ReactNode;
@@ -14,6 +15,7 @@ export const CryptoContext = createContext<CryptoContextType>({
   currentFiat: null,
   setCurrentFiat: () => {},
   changeCurrentCoin: () => {},
+  chartData: null,
 });
 
 export function CryptoProvider({ children }: ProviderProps) {
@@ -23,6 +25,8 @@ export function CryptoProvider({ children }: ProviderProps) {
 
   const [fiatList, setFiatList] = useState<Fiat[] | null>(null);
   const [currentFiat, setCurrentFiat] = useState<Fiat | null>(null);
+
+  const [chartData, setChartData] = useState<ChartData[] | null>(null);
 
   async function handleRequest() {
     const handleCoinList: Coin[] = await getCoinList();
@@ -40,6 +44,7 @@ export function CryptoProvider({ children }: ProviderProps) {
     );
 
     await getFiatList();
+    getChartDataCoin(handleCoinList[0]);
   }
 
   async function getCoinList() {
@@ -69,8 +74,32 @@ export function CryptoProvider({ children }: ProviderProps) {
     }
   }
 
+  async function getChartDataCoin(coin: Coin) {
+    try {
+      const response = await api.get(`charts?period=1w&coinId=${coin.id}`);
+
+      const data: Array<Array<4>> = await response.data.chart;
+
+      const handleChartData: ChartData[] = [];
+
+      data.forEach((chartPoint) => {
+        const [timestamp, price] = chartPoint;
+
+        handleChartData.push({
+          datetime: moment(new Date(timestamp * 1000)).format("DD MMMM"),
+          price: price.toFixed(2),
+        });
+      });
+
+      setChartData(handleChartData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async function changeCurrentCoin(coin: Coin) {
     setCurrentCoin(coin);
+    getChartDataCoin(coin);
   }
 
   useEffect(() => {
@@ -87,6 +116,7 @@ export function CryptoProvider({ children }: ProviderProps) {
         currentFiat,
         setCurrentFiat,
         changeCurrentCoin,
+        chartData,
       }}
     >
       {children}
