@@ -86,8 +86,8 @@ export function CryptoProvider({ children }: ProviderProps) {
         const [timestamp, price] = chartPoint;
 
         handleChartData.push({
-          datetime: moment(new Date(timestamp * 1000)).format("DD MMMM"),
-          price: price.toFixed(2),
+          datetime: moment(new Date(timestamp * 1000)).format("DD MMMM HH:mm"),
+          price: price,
         });
       });
 

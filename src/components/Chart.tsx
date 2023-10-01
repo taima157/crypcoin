@@ -18,14 +18,70 @@ type PropsType = {
   data: ChartData[];
 };
 
+type AxisProps = {
+  x?: number;
+  y?: number;
+  payload?: {
+    value: number | string;
+  };
+};
+
+function CustomizedYAxisTick({ x, y, payload }: AxisProps) {
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={5}
+        dx={-22}
+        textAnchor="middle"
+        className="text-xs md:text-sm fill-slate-600" // Classes Tailwind CSS responsivas
+        transform="rotate(0)"
+      >
+        {payload ? payload.value : ""}
+      </text>
+    </g>
+  );
+}
+
+function CustomizedXAxisTick({ x, y, payload }: AxisProps) {
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={16}
+        textAnchor="middle"
+        className="text-xs md:text-sm fill-slate-600" // Classes Tailwind CSS responsivas
+        transform="rotate(0)"
+      >
+        {payload ? payload.value : ""}
+      </text>
+    </g>
+  );
+}
+
 export default function Chart({ data }: PropsType) {
-  const { currentCoin } = useContext(CryptoContext);
+  const { currentCoin, currentFiat } = useContext(CryptoContext);
+
+  if (!currentFiat) return <></>;
+
+  const handleData: ChartData[] = [];
+
+  data.forEach((point) => {
+    const convertedPoint: ChartData = {
+      datetime: point.datetime,
+      price: point.price * currentFiat.rate,
+    };
+
+    handleData.push(convertedPoint);
+  });
 
   function getYTicks() {
     let maxYTick = 0;
     let minYTick = 0;
 
-    data.forEach((chartPoint, index) => {
+    handleData.forEach((chartPoint, index) => {
       if (index == 0) {
         maxYTick = minYTick = chartPoint.price;
       }
@@ -56,10 +112,18 @@ export default function Chart({ data }: PropsType) {
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={data}>
+      <LineChart data={handleData}>
         <CartesianGrid strokeDasharray="3 3" fill="#0f172a" fillOpacity={0.2} />
-        <XAxis dataKey="datetime" allowDataOverflow={true} />
-        <YAxis domain={yTicks} allowDecimals={false} />
+        <XAxis
+          dataKey="datetime"
+          allowDataOverflow={true}
+          tick={<CustomizedXAxisTick />}
+        />
+        <YAxis
+          domain={yTicks}
+          allowDecimals={false}
+          tick={<CustomizedYAxisTick />}
+        />
         <Tooltip content={<CustomTooltip />} />
         <Legend verticalAlign="top" height={36} />
         <Line
