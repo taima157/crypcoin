@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Cryptocurrency from "./Cryptocurrency";
+import Currency from "./Currency";
 import Compare from "./Compare";
 
 export default function Navigation() {
@@ -29,14 +29,14 @@ export default function Navigation() {
         <div
           className={`w-1/4 h-1 ${
             tab === "currency" ? "translate-x-1/2" : "translate-x-[250%]"
-          } duration-500 bg-purple-600 rounded-sm`}
+          } duration-500 bg-purple-600 rounded-sm `}
         />
       </div>
 
       <div
-        className={`flex-1 w-full h-full ${tab !== "currency" ? "hidden" : ""}`}
+        className={`flex-1 w-full flex ${tab !== "currency" ? "hidden" : ""}`}
       >
-        <Cryptocurrency />
+        <Currency />
       </div>
 
       <div

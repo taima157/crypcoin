@@ -12,13 +12,14 @@ export default function App() {
   }
 
   return (
-    <div className="w-full h-screen bg-slate-950 flex">
+    <div className="w-screen h-screen bg-slate-950 flex">
       {isMenuOpen && <SideBarCoinsMobile toggleMenu={toggleIsMenuOpen} />}
       <SideBarCoins />
 
-      <div className="flex-1 flex flex-col">
+      <div className="w-full flex-1 flex flex-col">
         <Header toggleMenu={toggleIsMenuOpen} />
-        <main className="flex-1 flex flex-col pt-6 gap-14 overflow-y-auto">
+
+        <main className="flex-1 w-full flex flex-col pt-6 gap-14 overflow-auto">
           <Navigation />
         </main>
       </div>

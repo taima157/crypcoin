@@ -29,8 +29,12 @@ export default function SearchedCoin({ coin, toggleModal }: PropsType) {
       <div className="p-3 sm:p-5 gap-2 flex flex-col sm:flex-row sm:items-center w-full justify-between">
         <div className="flex gap-2 items-center">
           <img className="h-8 w-8" src={coin.icon} alt={`Ícone ${coin.name}`} />
-          <span className="text-sm text-slate-400 font-semibold">{coin.name}</span>
-          <span className="text-sm text-purple-600 font-semibold">{coin.symbol}</span>
+          <span className="text-sm text-slate-400 font-semibold">
+            {coin.name}
+          </span>
+          <span className="text-sm text-purple-600 font-semibold">
+            {coin.symbol}
+          </span>
         </div>
 
         <div className="flex justify-end">
