@@ -115,7 +115,7 @@ export default function SavedCoin({ coin, removeCoin }: PropsType) {
       >
         <XMarkIcon
           className={`w-6 ${
-            coin.id === currentCoin.id ? "text-slate-50" : "text-purple-600"
+            coin.id === currentCoin.id ? "text-slate-50" : "text-slate-600"
           }`}
         />
       </button>

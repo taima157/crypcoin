@@ -16,12 +16,23 @@ export const CryptoContext = createContext<CryptoContextType>({
   setCurrentFiat: () => {},
   changeCurrentCoin: () => {},
   chartData: null,
+  period: "24h",
+  setPeriod: () => {},
+  getChartDataCoin: () => {},
+  savedCoinList: [],
+  updateSavedCoinList: () => {},
 });
 
 export function CryptoProvider({ children }: ProviderProps) {
   const [currentCoin, setCurrentCoin] = useState<Coin | null>(null);
   const [trendingCoins, setTrendingCoins] = useState<Coin[] | null>(null);
   const [coinList, setCoinList] = useState<Coin[] | null>(null);
+
+  const [savedCoinList, setSavedCoinList] = useState<string[]>([]);
+
+  const [period, setPeriod] = useState<
+    "24h" | "1w" | "1m" | "3m" | "6m" | "1y"
+  >("24h");
 
   const [fiatList, setFiatList] = useState<Fiat[] | null>(null);
   const [currentFiat, setCurrentFiat] = useState<Fiat | null>(null);
@@ -44,7 +55,7 @@ export function CryptoProvider({ children }: ProviderProps) {
     );
 
     await getFiatList();
-    getChartDataCoin(handleCoinList[0]);
+    await getChartDataCoin(handleCoinList[0]);
   }
 
   async function getCoinList() {
@@ -74,9 +85,46 @@ export function CryptoProvider({ children }: ProviderProps) {
     }
   }
 
-  async function getChartDataCoin(coin: Coin) {
+  function formatDatetime(
+    timestamp: number,
+    period: "24h" | "1w" | "1m" | "3m" | "6m" | "1y"
+  ) {
+    let format: string = "";
+
+    switch (period) {
+      case "24h":
+        format = "DD/MM - HH:mm";
+        break;
+      case "1w":
+        format = "DD/MMMM";
+        break;
+      case "1m":
+        format = "DD/MMMM";
+        break;
+      case "3m":
+        format = "MMMM/YY";
+        break;
+      case "6m":
+        format = "MMMM/YY";
+        break;
+      case "1y":
+        format = "MMMM/YY";
+        break;
+    }
+
+    return moment(new Date(timestamp * 1000)).format(format);
+  }
+
+  async function getChartDataCoin(
+    coin: Coin,
+    periodParam?: "24h" | "1w" | "1m" | "3m" | "6m" | "1y"
+  ) {
     try {
-      const response = await api.get(`charts?period=1w&coinId=${coin.id}`);
+      const currentPeriod = periodParam ? periodParam : period;
+
+      const response = await api.get(
+        `charts?period=${currentPeriod}&coinId=${coin.id}`
+      );
 
       const data: Array<Array<4>> = await response.data.chart;
 
@@ -86,7 +134,10 @@ export function CryptoProvider({ children }: ProviderProps) {
         const [timestamp, price] = chartPoint;
 
         handleChartData.push({
-          datetime: moment(new Date(timestamp * 1000)).format("DD MMMM HH:mm"),
+          datetime: moment(new Date(timestamp * 1000)).format(
+            "DD/MM/YYYY - HH:mm"
+          ),
+          shortDate: formatDatetime(timestamp, currentPeriod),
           price: price,
         });
       });
@@ -98,12 +149,29 @@ export function CryptoProvider({ children }: ProviderProps) {
   }
 
   async function changeCurrentCoin(coin: Coin) {
+    if (coin.id === currentCoin?.id) return;
+
     setCurrentCoin(coin);
     getChartDataCoin(coin);
   }
 
+  function getSavedCoinList() {
+    const localSavedCoinList = localStorage.getItem("savedCoinList");
+    const handleSavedCoinList: string[] = localSavedCoinList
+      ? JSON.parse(localSavedCoinList)
+      : [];
+
+    setSavedCoinList(handleSavedCoinList);
+  }
+
+  function updateSavedCoinList(handlerSavedCoinList: string[]) {
+    localStorage.setItem("savedCoinList", JSON.stringify(handlerSavedCoinList));
+    setSavedCoinList(handlerSavedCoinList);
+  }
+
   useEffect(() => {
     handleRequest();
+    getSavedCoinList();
   }, []); // eslint-disable-line
 
   return (
@@ -117,6 +185,11 @@ export function CryptoProvider({ children }: ProviderProps) {
         setCurrentFiat,
         changeCurrentCoin,
         chartData,
+        period,
+        setPeriod,
+        getChartDataCoin,
+        updateSavedCoinList,
+        savedCoinList
       }}
     >
       {children}

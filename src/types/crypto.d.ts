@@ -27,6 +27,7 @@ export type Fiat = {
 
 export type ChartData = {
   datetime: string | number | Array;
+  shortDate: string | number | Array;
   price: string | number | Array;
 };
 
@@ -39,4 +40,12 @@ export type CryptoContextType = {
   setCurrentFiat: Dispatch<SetStateAction<Fiat | null>>;
   changeCurrentCoin: (coin: Coin) => void;
   chartData: ChartData[] | null;
+  period: "24h" | "1w" | "1m" | "3m" | "6m" | "1y";
+  setPeriod: Dispatch<SetStateAction<"24h" | "1w" | "1m" | "3m" | "6m" | "1y">>;
+  getChartDataCoin: (
+    coin: Coin,
+    period?: "24h" | "1w" | "1m" | "3m" | "6m" | "1y"
+  ) => void;
+  updateSavedCoinList: (handlerSavedCoinList: string[]) => void;
+  savedCoinList: string[];
 };

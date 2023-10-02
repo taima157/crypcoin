@@ -18,11 +18,13 @@ export default function Header({ toggleMenu }: PropsType) {
 
   function toggleIsFiatModalOpen() {
     setIsFiatModalOpen(!isFiatModalOpen);
+    document.body.classList.toggle("overflow-hidden");
   }
 
   function toggleIsSearchModalOpen(): void {
     setIsSearchModalOpen(!isSearchModalOpen);
     setSearchInput("");
+    document.body.classList.toggle("overflow-hidden");
   }
 
   return (
@@ -65,9 +67,9 @@ export default function Header({ toggleMenu }: PropsType) {
         <div className="fixed transition-opacity overflow-y-auto z-10 inset-0 w-screen h-screen flex justify-center items-center">
           <div
             onClick={toggleIsSearchModalOpen}
-            className="absolute w-full h-full bg-slate-950/50 backdrop-blur-sm"
+            className="absolute w-full h-full bg-slate-950/60 backdrop-blur-md"
           />
-          <div className="z-50 flex flex-col p-5 h-2/3 backdrop-blur-xl border-2 border-slate-900 bg-slate-900/30 w-[90%] md:2/3 lg:w-[800px] rounded-xl gap-10 shadow-xl drop-shadow-xl">
+          <div className="z-50 flex flex-col p-5 h-2/3 backdrop-blur-xl border-2 border-slate-900 bg-slate-900/30 w-[90%] md:2/3 lg:w-[800px] rounded-xl gap-10 ">
             <h3 className="self-start font-semibold text-lg text-slate-400">
               Pesquise por uma criptomoeda.
             </h3>
@@ -130,13 +132,13 @@ export default function Header({ toggleMenu }: PropsType) {
         <div className="fixed transition-opacity overflow-y-auto z-10 inset-0 w-screen h-screen flex justify-center items-center">
           <div
             onClick={toggleIsFiatModalOpen}
-            className="absolute w-full h-full bg-slate-950/50 backdrop-blur-sm"
+            className="absolute w-full h-full bg-slate-950/60 backdrop-blur-md"
           />
-          <div className="flex flex-col p-5 backdrop-blur-xl border-2 border-slate-900 bg-slate-900/30 w-[90%] md:2/3 lg:w-[800px] rounded-xl gap-10 shadow-xl drop-shadow-xl">
+          <div className="z-10 flex flex-col p-5 h-2/3 backdrop-blur-xl border-2 border-slate-900 bg-slate-900/30 w-[90%] md:2/3 lg:w-[800px] rounded-xl gap-10">
             <h3 className="self-start font-semibold text-lg text-slate-400">
               Selecionar moeda de conversão.
             </h3>
-            <div className="flex flex-wrap gap-3 h-64 overflow-y-auto pr-5">
+            <div className="flex-1 grid pr-2 grid-cols-2 md:grid-cols-3 gap-5 overflow-y-auto">
               {fiatList &&
                 fiatList.map((fiat) => {
                   return (

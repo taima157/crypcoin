@@ -71,6 +71,7 @@ export default function Chart({ data }: PropsType) {
   data.forEach((point) => {
     const convertedPoint: ChartData = {
       datetime: point.datetime,
+      shortDate: point.shortDate,
       price: point.price * currentFiat.rate,
     };
 
@@ -112,10 +113,10 @@ export default function Chart({ data }: PropsType) {
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={handleData} >
+      <LineChart data={handleData}>
         <CartesianGrid strokeDasharray="3 3" fill="#0f172a" fillOpacity={0.2} />
         <XAxis
-          dataKey="datetime"
+          dataKey="shortDate"
           allowDataOverflow={true}
           tick={<CustomizedXAxisTick />}
         />

@@ -22,7 +22,7 @@ export default function FiatItem({ fiat, toggleModal }: PropsType) {
         currentFiat?.name == fiat.name
           ? "bg-purple-600 hover:bg-purple-500"
           : "bg-slate-900/30 hover:bg-slate-900"
-      }  transition-colors`}
+      }  transition-colors h-12`}
     >
       {currentFiat?.name !== fiat.name && (
         <div className="h-full bg-purple-600 w-[2px]" />

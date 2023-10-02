@@ -9,6 +9,7 @@ export default function App() {
 
   function toggleIsMenuOpen() {
     setIsMenuOpen(!isMenuOpen);
+    document.body.classList.toggle("overflow-hidden")
   }
 
   return (
@@ -16,10 +17,10 @@ export default function App() {
       {isMenuOpen && <SideBarCoinsMobile toggleMenu={toggleIsMenuOpen} />}
       <SideBarCoins />
 
-      <div className="w-full flex-1 flex flex-col">
+      <div className="w-full flex-1 flex flex-col ">
         <Header toggleMenu={toggleIsMenuOpen} />
 
-        <main className="flex-1 w-full flex flex-col pt-6 gap-14 overflow-auto">
+        <main className="flex-1 w-full flex flex-col pt-6 gap-14 pb-12 sm:pb-0">
           <Navigation />
         </main>
       </div>
