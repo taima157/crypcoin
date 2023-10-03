@@ -33,7 +33,7 @@ export default function CompareCoinModal({ toggleModal, side }: PropsType) {
     <div className="fixed transition-opacity overflow-y-auto z-10 inset-0 w-screen h-screen flex justify-center items-center">
       <div
         onClick={toggleModal}
-        className="absolute w-full h-full bg-slate-950/50 backdrop-blur-md"
+        className="absolute w-full h-full bg-slate-950/90 scroll-smooth"
       />
       <div className="z-50 flex flex-col p-5 h-2/3 backdrop-blur-xl border-2 border-slate-900 bg-slate-900/30 w-[90%] md:2/3 lg:w-[800px] rounded-xl gap-10 ">
         <h3 className="self-start font-semibold text-lg text-slate-400">
@@ -52,7 +52,7 @@ export default function CompareCoinModal({ toggleModal, side }: PropsType) {
         </div>
 
         <div className="flex-1 overflow-auto">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 items-start gap-5 pr-3  ">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 items-start gap-5 pr-3">
             {coinList &&
               coinList.map((coin) => {
                 let isSelected: boolean = false;

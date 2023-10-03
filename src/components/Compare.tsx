@@ -61,8 +61,8 @@ export default function Compare() {
               onClick={() => toggleIsCompareModal("left")}
               className="py-2 md:py-4 w-1/2 md:w-2/5 px-6 md:h-28 flex items-center flex-col gap-2 border-2 backdrop-blur bg-slate-800/30 hover:bg-slate-800/10 border-slate-700 rounded-xl transition-colors shadow-md drop-shadow-md"
             >
-              <PlusIcon className="w-8 md:w-12 text-slate-400" />
-              <span className="text-slate-400 font-semibold text-sm md:text-base">
+              <PlusIcon className="w-8 sm:w-12 text-slate-400" />
+              <span className="text-slate-400 font-semibold text-sm sm:text-base">
                 Selecionar criptomoeda
               </span>
             </button>
@@ -81,8 +81,8 @@ export default function Compare() {
               onClick={() => toggleIsCompareModal("right")}
               className="py-2 md:py-4 w-1/2 md:w-2/5 px-6 md:h-28 flex items-center flex-col gap-2 border-2 backdrop-blur bg-slate-800/30 hover:bg-slate-800/10 border-slate-700 rounded-xl transition-colors shadow-md drop-shadow-md"
             >
-              <PlusIcon className="w-8 md:w-12 text-slate-400" />
-              <span className="text-slate-400 font-semibold text-sm md:text-base">
+              <PlusIcon className="w-8 sm:w-12 text-slate-400" />
+              <span className="text-slate-400 font-semibold text-sm sm:text-base">
                 Selecionar criptomoeda
               </span>
             </button>
@@ -91,8 +91,6 @@ export default function Compare() {
       </div>
 
       <div className="flex flex-1 flex-col xl:flex-row font-semibold px-2 sm:px-5 md:px-10 xl:px-16 pb-5">
-        {/* {compareChartData && (
-          <> */}
         <div className="w-full xl:w-9/12 h-96 sm:h-full">
           <CompareChart data={compareChartData} />
         </div>
@@ -129,8 +127,6 @@ export default function Compare() {
             })}
           </div>
         </div>
-        {/* </>
-        )} */}
       </div>
 
       {isCompareModal.isOpen && (
