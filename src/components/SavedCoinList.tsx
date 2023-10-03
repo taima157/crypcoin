@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { CryptoContext } from "../context/CryptoContext";
 import SavedCoin from "./SavedCoin";
-import SavedCoinModal from "./Modais/SavedCoinModal";
+import SelectCoinModal from "./Modais/SelectCoinModal";
 
 export default function SavedCoinList() {
   const { coinList, savedCoinList, updateSavedCoinList } =
@@ -50,7 +50,7 @@ export default function SavedCoinList() {
         </button>
       </div>
 
-      {isAddCoinModal && <SavedCoinModal toggleModal={toggleIsAddCoinModal} />}
+      {isAddCoinModal && <SelectCoinModal toggleModal={toggleIsAddCoinModal} />}
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default function Currency() {
   const periods = [
     { period: "24h", text: "24 horas" },
     { period: "1w", text: "1 semana" },
-    { period: "1m ", text: "1 mês" },
+    { period: "1m", text: "1 mês" },
     { period: "3m", text: "3 meses" },
     { period: "6m", text: "6 meses" },
     { period: "1y", text: "1 ano" },
@@ -29,7 +29,7 @@ export default function Currency() {
     <div className="flex w-full flex-col">
       <div className="flex w-full flex-col gap-5 px-5 lg:pt-0 md:px-10 xl:px-16 pb-5">
         <h3 className="font-semibold text-slate-300 text-lg">
-          Criptomoedas salvas
+          Criptomoedas salvas.
         </h3>
         <SavedCoinList />
       </div>

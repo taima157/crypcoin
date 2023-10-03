@@ -21,7 +21,7 @@ export default function Navigation() {
             onClick={() => setTab("compare")}
             className={`w-2/5 ${
               tab === "compare" ? "text-slate-200 " : "text-slate-600"
-            } font-semibold pt-2 rounded-sm `}
+            } font-semibold p-2 rounded-sm `}
           >
             Comparar
           </button>

@@ -2,6 +2,7 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 import { ChartData, Coin, CryptoContextType, Fiat } from "../types/crypto";
 import { api } from "../services/api";
 import moment from "moment";
+import formatTimestamp from "../functions/formatTimestamp";
 
 type ProviderProps = {
   children: ReactNode;
@@ -85,36 +86,6 @@ export function CryptoProvider({ children }: ProviderProps) {
     }
   }
 
-  function formatDatetime(
-    timestamp: number,
-    period: "24h" | "1w" | "1m" | "3m" | "6m" | "1y"
-  ) {
-    let format: string = "";
-
-    switch (period) {
-      case "24h":
-        format = "DD/MM - HH:mm";
-        break;
-      case "1w":
-        format = "DD/MMMM";
-        break;
-      case "1m":
-        format = "DD/MMMM";
-        break;
-      case "3m":
-        format = "MMMM/YY";
-        break;
-      case "6m":
-        format = "MMMM/YY";
-        break;
-      case "1y":
-        format = "MMMM/YY";
-        break;
-    }
-
-    return moment(new Date(timestamp * 1000)).format(format);
-  }
-
   async function getChartDataCoin(
     coin: Coin,
     periodParam?: "24h" | "1w" | "1m" | "3m" | "6m" | "1y"
@@ -137,7 +108,7 @@ export function CryptoProvider({ children }: ProviderProps) {
           datetime: moment(new Date(timestamp * 1000)).format(
             "DD/MM/YYYY - HH:mm"
           ),
-          shortDate: formatDatetime(timestamp, currentPeriod),
+          shortDate: formatTimestamp(timestamp, currentPeriod),
           price: price,
         });
       });
@@ -189,7 +160,7 @@ export function CryptoProvider({ children }: ProviderProps) {
         setPeriod,
         getChartDataCoin,
         updateSavedCoinList,
-        savedCoinList
+        savedCoinList,
       }}
     >
       {children}

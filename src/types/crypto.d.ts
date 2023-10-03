@@ -49,3 +49,20 @@ export type CryptoContextType = {
   updateSavedCoinList: (handlerSavedCoinList: string[]) => void;
   savedCoinList: string[];
 };
+
+export type CompareChartData = {
+  datetime: string | number | Array;
+  shortDate: string | number | Array;
+  firstPrice: string | number | Array;
+  secondPrice: string | number | Array;
+};
+
+export type CompareCryptoContextType = {
+  firstCoin: Coin | null;
+  secondCoin: Coin | null;
+  compareChartData: CompareChartData[] | null;
+  period: "24h" | "1w" | "1m" | "3m" | "6m" | "1y";
+  setPeriod: Dispatch<SetStateAction<"24h" | "1w" | "1m" | "3m" | "6m" | "1y">>;
+  handleChoiceCoin: (coin: Coin, side: "left" | "right") => void;
+  removeSelectedCoin: (side: "left" | "right") => void;
+};

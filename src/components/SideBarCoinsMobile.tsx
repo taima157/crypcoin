@@ -12,7 +12,7 @@ export default function SideBarCoinsMobile({ toggleMenu }: PropsType) {
 
   return (
     <div className="absolute flex w-screen h-screen lg:hidden">
-      <div className="z-10 relative w-3/4 md:w-1/2 h-full bg-slate-900/50 backdrop-blur-lg overflow-y-auto">
+      <div className="z-50 relative w-3/4 md:w-1/2 h-full bg-slate-900/50 backdrop-blur-lg overflow-y-auto">
         <button className="absolute top-2 right-2" onClick={toggleMenu}>
           <XMarkIcon className="h-8 w-8 text-slate-600" />
         </button>

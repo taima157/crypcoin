@@ -1,14 +1,15 @@
 import { useContext, useState } from "react";
 import { CryptoContext } from "../../context/CryptoContext";
+import SelectedCoinItem from "../SelectedCoinItem";
 
 type PropsType = {
   toggleModal: () => void;
 };
 
-export default function SavedCoinModal({ toggleModal }: PropsType) {
+export default function SelectCoinModal({ toggleModal }: PropsType) {
   const { coinList, savedCoinList, updateSavedCoinList } =
     useContext(CryptoContext);
-    
+
   const [selectedCoin, setSelectedCoin] = useState<string>("");
 
   function addCoin(coinId: string) {
@@ -18,6 +19,14 @@ export default function SavedCoinModal({ toggleModal }: PropsType) {
 
     updateSavedCoinList(handleCoinList);
     toggleModal();
+  }
+
+  function handleSelectCoin(coinId: string) {
+    if (coinId === selectedCoin) {
+      setSelectedCoin("");
+    } else {
+      setSelectedCoin(coinId);
+    }
   }
 
   return (
@@ -43,39 +52,12 @@ export default function SavedCoinModal({ toggleModal }: PropsType) {
           {coinList?.map((coin) => {
             if (!savedCoinList.includes(coin.id)) {
               return (
-                <button
-                  onClick={() => {
-                    if (coin.id === selectedCoin) {
-                      setSelectedCoin("");
-                    } else {
-                      setSelectedCoin(coin.id);
-                    }
-                  }}
-                  className={`text-left ${
-                    coin.id === selectedCoin
-                      ? "bg-purple-700 border-purple-700 shadow-purple-700/50"
-                      : "bg-slate-900/30 border-slate-800 backdrop-blur-md"
-                  } flex items-center gap-5 rounded-md border-2 shadow-lg p-2`}
+                <SelectedCoinItem
                   key={coin.id}
-                >
-                  <img
-                    className="h-8 w-8"
-                    src={coin.icon}
-                    alt={`Ícone ${coin.name}`}
-                  />
-                  <div className="flex flex-col">
-                    <p className="text-slate-50 font-semibold">{coin.name}</p>
-                    <p
-                      className={`${
-                        coin.id === selectedCoin
-                          ? "text-slate-400"
-                          : "text-purple-600"
-                      } font-semibold text-sm`}
-                    >
-                      {coin.symbol}
-                    </p>
-                  </div>
-                </button>
+                  coin={coin}
+                  handleSelectCoin={handleSelectCoin}
+                  selectedCoin={selectedCoin}
+                />
               );
             }
           })}
