@@ -27,11 +27,15 @@ export default function Header({ toggleMenu }: PropsType) {
   return (
     <header className="w-full flex flex-col gap-8 px-5 md:px-10 xl:px-16 py-5 lg:py-8">
       <div className="flex w-full justify-between lg:justify-end">
-        <button onClick={toggleMenu} className="lg:hidden self-start">
+        <button
+          onClick={toggleMenu}
+          className="lg:hidden self-start"
+          name="Botão do menu lateral"
+        >
           <Bars3Icon className="w-9 text-slate-400" />
         </button>
         <div className="flex gap-5 items-center">
-          <button onClick={toggleIsSearchModalOpen}>
+          <button onClick={toggleIsSearchModalOpen} name="Botão de pesquisa">
             <MagnifyingGlassIcon className="w-7 text-slate-400 hover:text-purple-600 transition-colors" />
           </button>
           {currentFiat ? (
@@ -44,6 +48,8 @@ export default function Header({ toggleMenu }: PropsType) {
               </span>
               <img
                 className="w-7"
+                height={28}
+                width={28}
                 src={currentFiat.imageUrl}
                 alt={`Icone da moeda ${currentFiat.name}`}
               />
