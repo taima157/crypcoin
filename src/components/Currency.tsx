@@ -42,7 +42,7 @@ export default function Currency() {
             </div>
             <div className="flex-1 flex flex-col pl-5 pt-5 pb-5 pr-5 xl:pr-0 gap-5">
               <h3 className="text-slate-50 text-lg font-semibold">
-                Gráfico de preços
+                Período.
               </h3>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-1 gap-5">

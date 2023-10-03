@@ -15,7 +15,7 @@ export default function CustomTooltip({ active, payload }: PropsType) {
     const price = payload[0].payload.price;
 
     return (
-      <div className="bg-slate-900/40 backdrop-blur-sm border-2 border-slate-900 rounded-md p-5 flex flex-col gap-4">
+      <div className="bg-slate-900/50 backdrop-blur-lg border-2 border-slate-800 rounded-md p-5 flex flex-col gap-4">
         <span className="text-slate-400 font-semibold">
           Data: <span className="text-slate-300">{`${date}`}</span>
         </span>

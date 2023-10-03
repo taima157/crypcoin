@@ -17,7 +17,7 @@ export default function CustomCompareTooltip({ active, payload }: PropsType) {
     const secondPrice = payload[0].payload.secondPrice;
 
     return (
-      <div className="bg-slate-900/40 backdrop-blur-sm border-2 border-slate-900 rounded-md p-5 flex flex-col gap-2">
+      <div className="bg-slate-900/50 backdrop-blur-lg border-2 border-slate-800 rounded-md p-5 flex flex-col gap-2">
         <span className="text-slate-400 font-semibold">
           Data: <span className="text-slate-300">{`${date}`}</span>
         </span>

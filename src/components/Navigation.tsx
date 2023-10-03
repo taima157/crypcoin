@@ -12,7 +12,7 @@ export default function Navigation() {
           <button
             onClick={() => setTab("currency")}
             className={`w-2/5 ${
-              tab === "currency" ? "text-slate-200 " : "text-slate-600"
+              tab === "currency" ? "text-slate-200 " : "text-slate-500"
             }  font-semibold p-2 rounded-sm `}
           >
             Criptomoeda
@@ -20,7 +20,7 @@ export default function Navigation() {
           <button
             onClick={() => setTab("compare")}
             className={`w-2/5 ${
-              tab === "compare" ? "text-slate-200 " : "text-slate-600"
+              tab === "compare" ? "text-slate-200 " : "text-slate-500"
             } font-semibold p-2 rounded-sm `}
           >
             Comparar
