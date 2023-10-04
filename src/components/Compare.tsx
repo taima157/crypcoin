@@ -95,9 +95,7 @@ export default function Compare() {
           <CompareChart data={compareChartData} />
         </div>
         <div className="flex-1 flex flex-col pl-5 pt-5 pr-5 xl:pr-0 gap-5">
-          <h3 className="text-slate-50 text-lg font-semibold">
-            Período.
-          </h3>
+          <h3 className="text-slate-50 text-lg font-semibold">Período.</h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-1 gap-5">
             {periods.map((handlePeriod) => {

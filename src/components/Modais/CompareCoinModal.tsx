@@ -2,7 +2,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useContext, useState } from "react";
 import { CompareCryptoContext } from "../../context/CompareCryptoContext";
 import { CryptoContext } from "../../context/CryptoContext";
-import { Coin } from "../../types/crypto";
+import CompareSelectedCoinItem from "../CompareSelectedCoinItem";
 
 type PropsType = {
   toggleModal: () => void;
@@ -11,7 +11,7 @@ type PropsType = {
 
 export default function CompareCoinModal({ toggleModal, side }: PropsType) {
   const { coinList } = useContext(CryptoContext);
-  const { handleChoiceCoin, firstCoin, secondCoin, removeSelectedCoin } =
+  const { firstCoin, secondCoin, removeSelectedCoin } =
     useContext(CompareCryptoContext);
 
   let isRemove = false;
@@ -20,11 +20,6 @@ export default function CompareCoinModal({ toggleModal, side }: PropsType) {
     isRemove = firstCoin ? true : false;
   } else {
     isRemove = secondCoin ? true : false;
-  }
-
-  function handleChoice(coin: Coin) {
-    handleChoiceCoin(coin, side);
-    toggleModal();
   }
 
   const [searchInput, setSearchInput] = useState<string>("");
@@ -63,21 +58,17 @@ export default function CompareCoinModal({ toggleModal, side }: PropsType) {
                       isSelected = true;
                     }
                   }
-                } else {
-                  if (secondCoin) {
-                    if (secondCoin.id === coin.id) {
-                      isSelected = true;
-                    }
-                  }
-                }
-
-                if (side === "left") {
                   if (secondCoin) {
                     if (secondCoin.id === coin.id) {
                       return <></>;
                     }
                   }
                 } else {
+                  if (secondCoin) {
+                    if (secondCoin.id === coin.id) {
+                      isSelected = true;
+                    }
+                  }
                   if (firstCoin) {
                     if (firstCoin.id === coin.id) {
                       return <></>;
@@ -90,66 +81,24 @@ export default function CompareCoinModal({ toggleModal, side }: PropsType) {
                     coin.name.toLowerCase().includes(searchInput.toLowerCase())
                   ) {
                     return (
-                      <button
-                        onClick={() => handleChoice(coin)}
-                        className={`text-left ${
-                          isSelected
-                            ? "bg-purple-700 border-purple-700 shadow-purple-700/50"
-                            : "bg-slate-900/30 border-slate-800 backdrop-blur-md"
-                        } flex items-center gap-5 rounded-md border-2 shadow-lg p-2`}
-                        key={coin.id}
-                      >
-                        <img
-                          className="h-8 w-8"
-                          src={coin.icon}
-                          alt={`Ícone ${coin.name}`}
-                        />
-                        <div className="flex flex-col">
-                          <p className="text-slate-50 font-semibold">
-                            {coin.name}
-                          </p>
-                          <p
-                            className={`${
-                              isSelected ? "text-slate-400" : "text-purple-600"
-                            } font-semibold text-sm`}
-                          >
-                            {coin.symbol}
-                          </p>
-                        </div>
-                      </button>
+                      <CompareSelectedCoinItem
+                        coin={coin}
+                        selected={isSelected}
+                        toggleModal={toggleModal}
+                        side={side}
+                      />
                     );
                   } else {
                     return <></>;
                   }
                 } else {
                   return (
-                    <button
-                      onClick={() => handleChoice(coin)}
-                      className={`text-left ${
-                        isSelected
-                          ? "bg-purple-700 border-purple-700 shadow-purple-700/50"
-                          : "bg-slate-900/30 border-slate-800 backdrop-blur-md"
-                      } flex items-center gap-5 rounded-md border-2 shadow-lg p-2`}
-                      key={coin.id}
-                    >
-                      <img
-                        className="h-8 w-8"
-                        src={coin.icon}
-                        alt={`Ícone ${coin.name}`}
-                      />
-                      <div className="flex flex-col">
-                        <p className="text-slate-50 font-semibold">
-                          {coin.name}
-                        </p>
-                        <p
-                          className={`${
-                            isSelected ? "text-slate-400" : "text-purple-600"
-                          } font-semibold text-sm`}
-                        >
-                          {coin.symbol}
-                        </p>
-                      </div>
-                    </button>
+                    <CompareSelectedCoinItem
+                      coin={coin}
+                      selected={isSelected}
+                      toggleModal={toggleModal}
+                      side={side}
+                    />
                   );
                 }
               })}
