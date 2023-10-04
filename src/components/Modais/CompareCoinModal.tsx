@@ -82,6 +82,7 @@ export default function CompareCoinModal({ toggleModal, side }: PropsType) {
                   ) {
                     return (
                       <CompareSelectedCoinItem
+                        key={coin.id}
                         coin={coin}
                         selected={isSelected}
                         toggleModal={toggleModal}
@@ -94,6 +95,7 @@ export default function CompareCoinModal({ toggleModal, side }: PropsType) {
                 } else {
                   return (
                     <CompareSelectedCoinItem
+                      key={coin.id}
                       coin={coin}
                       selected={isSelected}
                       toggleModal={toggleModal}

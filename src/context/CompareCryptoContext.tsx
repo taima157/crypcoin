@@ -34,8 +34,6 @@ export function CompareCryptoProvider({ children }: PropsType) {
   >(null);
 
   function handleChoiceCoin(coin: Coin, side: string) {
-    console.log("testando teste");
-
     if (side === "left") {
       setFirstCoin(coin);
     } else {
