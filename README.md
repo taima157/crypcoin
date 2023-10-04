@@ -21,3 +21,4 @@ Além de acessar o site você pode rodar o projeto na sua própria máquina segu
 3. Dentro do diretório do projeto execute o `npm install` para instalar as depências do projeto.
 4. Depois execute o `npm run dev`, ele vai abrir um servidor no seu computador na seguinte URL: [localhost:5173](http://localhost:5173)
 
+O site está totalmente responsível, então você pode acessá-lo no seu dispositivo móvel.
