@@ -1,27 +1,23 @@
-# React + TypeScript + Vite
+# CrypCoin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O CrypCoin é um site de cotações de criptomoedas que oferece diversar funcionalidades para o usuário. Dentre elas podemos listar algumas:
 
-Currently, two official plugins are available:
+- Cotação de criptomoedas em tempo real.
+- Comparar duas criptomoedas e seus preços.
+- Gráficos interativos com variação de períodos.
+- Salvar criptomoedas para facilitar a visualizão dos seus preços.
+- Conversão para diversas moedas (BRL, USD...).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Como posso acessar o site?
 
-## Expanding the ESLint configuration
+Você pode acessar o site clicando [aqui.](https://taima-crypcoin.netlify.app)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Instalando e rodando o projeto na máquina.
 
-- Configure the top-level `parserOptions` property like this:
+Além de acessar o site você pode rodar o projeto na sua própria máquina seguindo os passos a seguir:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+1. Instale o NodeJS na sua máquina.
+2. Clone esse repositório no seu computador.
+3. Dentro do diretório do projeto execute o `npm install` para instalar as depências do projeto.
+4. Depois execute o `npm run dev`, ele vai abrir um servidor no seu computador na seguinte URL: [localhost:5173](http://localhost:5173)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
