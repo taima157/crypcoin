@@ -90,11 +90,12 @@ export default function Compare() {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col xl:flex-row font-semibold px-2 sm:px-5 md:px-10 xl:px-16 pb-5">
-        <div className="w-full xl:w-9/12 h-96 sm:h-full">
+      <div className="flex flex-1 flex-col xl:flex-row font-semibold px-2 sm:px-5 md:px-10 xl:px-16">
+        <div className="w-full xl:w-3/4 h-96 md:h-[36rem]">
           <CompareChart data={compareChartData} />
         </div>
-        <div className="flex-1 flex flex-col pl-5 pt-5 pr-5 xl:pr-0 gap-5">
+
+        <div className="w-full xl:w-1/4 flex flex-col pl-5 pt-5 pb-5 pr-5 xl:pr-0 gap-5">
           <h3 className="text-slate-50 text-lg font-semibold">Período.</h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-1 gap-5">

@@ -35,46 +35,41 @@ export default function Currency() {
       </div>
 
       <div className="flex flex-1 flex-col xl:flex-row font-semibold px-2 sm:px-5 md:px-10 xl:px-16">
-        {/* {chartData && (
-          <> */}
-            <div className="w-full xl:w-9/12 h-96 sm:h-full">
-              <Chart data={chartData} />
-            </div>
-            <div className="flex-1 flex flex-col pl-5 pt-5 pb-5 pr-5 xl:pr-0 gap-5">
-              <h3 className="text-slate-50 text-lg font-semibold">
-                Período.
-              </h3>
+        <div className="w-full xl:w-3/4 h-96 md:h-[36rem]">
+          <Chart data={chartData} />
+        </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-1 gap-5">
-                {periods.map((handlePeriod) => {
-                  return (
-                    <button
-                      key={handlePeriod.period}
-                      onClick={() =>
-                        handleChangePeriod(
-                          handlePeriod.period as
-                            | "24h"
-                            | "1w"
-                            | "1m"
-                            | "3m"
-                            | "6m"
-                            | "1y"
-                        )
-                      }
-                      className={`text-left ${
-                        period === handlePeriod.period
-                          ? "bg-purple-700 border-purple-700 shadow-purple-700/50 text-slate-50"
-                          : "transition-colors backdrop-blur-sm text-slate-500 bg-slate-800/30 hover:bg-slate-800/10 border-slate-700"
-                      } flex items-center gap-5 rounded-md border-2 shadow-lg py-2 px-4`}
-                    >
-                      {handlePeriod.text}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          {/* </>
-        )} */}
+        <div className="w-full xl:w-1/4 flex flex-col pl-5 pt-5 pb-5 pr-5 xl:pr-0 gap-5">
+          <h3 className="text-slate-50 text-lg font-semibold">Período.</h3>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-1 gap-5">
+            {periods.map((handlePeriod) => {
+              return (
+                <button
+                  key={handlePeriod.period}
+                  onClick={() =>
+                    handleChangePeriod(
+                      handlePeriod.period as
+                        | "24h"
+                        | "1w"
+                        | "1m"
+                        | "3m"
+                        | "6m"
+                        | "1y"
+                    )
+                  }
+                  className={`text-left ${
+                    period === handlePeriod.period
+                      ? "bg-purple-700 border-purple-700 shadow-purple-700/50 text-slate-50"
+                      : "transition-colors backdrop-blur-sm text-slate-500 bg-slate-800/30 hover:bg-slate-800/10 border-slate-700"
+                  } flex items-center gap-5 rounded-md border-2 shadow-lg py-2 px-4`}
+                >
+                  {handlePeriod.text}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
