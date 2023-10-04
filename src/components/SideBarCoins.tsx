@@ -7,7 +7,7 @@ export default function SideBarCoins() {
   const { trendingCoins } = useContext(CryptoContext);
 
   return (
-    <aside className="w-96 h-full bg-slate-900/60 hidden lg:block xl:block overflow-y-auto">
+    <aside className="w-96 h-full bg-slate-900/60 hidden lg:flex-col lg:flex">
       <div className="px-10 pt-16 pb-5 flex flex-col gap-2">
         <a href="/" className="self-start">
           <h1 className="text-xl font-bold border-l-2 border-purple-600 pl-2">
@@ -20,19 +20,22 @@ export default function SideBarCoins() {
         </h2>
       </div>
 
-      <div className="p-5">
+      <div className="p-5 flex-1 flex flex-col gap-10 overflow-auto">
         <div className="flex gap-2">
           <h2 className="text-neutral-50 font-semibold">
             Moedas em relevância
           </h2>
           <ArrowTrendingUpIcon className="w-6 text-purple-600" />
         </div>
-        <div className="py-10 flex flex-col gap-5 ">
-          {trendingCoins
-            ? trendingCoins.map((coin) => {
-                return <TrendingCoin key={coin.id} coin={coin} />;
-              })
-            : null}
+
+        <div className="flex-1 overflow-y-auto">
+          <div className="flex flex-col gap-5">
+            {trendingCoins
+              ? trendingCoins.map((coin) => {
+                  return <TrendingCoin key={coin.id} coin={coin} />;
+                })
+              : null}
+          </div>
         </div>
       </div>
     </aside>

@@ -15,7 +15,7 @@ import { CryptoContext } from "../context/CryptoContext";
 import CustomTooltip from "./CustomTooltip";
 
 type PropsType = {
-  data: ChartData[];
+  data: ChartData[] | null;
 };
 
 type AxisProps = {
@@ -63,6 +63,20 @@ function CustomizedXAxisTick({ x, y, payload }: AxisProps) {
 
 export default function Chart({ data }: PropsType) {
   const { currentCoin, currentFiat } = useContext(CryptoContext);
+
+  if (!data) {
+    return (
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={[]}>
+          <CartesianGrid
+            strokeDasharray="3 3"
+            fill="#0f172a"
+            fillOpacity={0.4}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    );
+  }
 
   if (!currentFiat) return <></>;
 

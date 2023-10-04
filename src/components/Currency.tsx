@@ -35,8 +35,8 @@ export default function Currency() {
       </div>
 
       <div className="flex flex-1 flex-col xl:flex-row font-semibold px-2 sm:px-5 md:px-10 xl:px-16">
-        {chartData && (
-          <>
+        {/* {chartData && (
+          <> */}
             <div className="w-full xl:w-9/12 h-96 sm:h-full">
               <Chart data={chartData} />
             </div>
@@ -73,8 +73,8 @@ export default function Currency() {
                 })}
               </div>
             </div>
-          </>
-        )}
+          {/* </>
+        )} */}
       </div>
     </div>
   );
