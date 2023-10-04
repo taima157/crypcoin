@@ -1,5 +1,7 @@
 # CrypCoin
 
+![Logo](src/assets/image-site.png)
+
 O CrypCoin é um site de cotações de criptomoedas que oferece diversar funcionalidades para o usuário. Dentre elas podemos listar algumas:
 
 - Cotação de criptomoedas em tempo real.
