@@ -57,14 +57,14 @@ export function CompareCryptoProvider({ children }: PropsType) {
 
     try {
       const firstResponse = await api.get(
-        `charts?period=${period}&coinId=${firstCoin.id}`
+        `coins/${firstCoin.id}/charts?period=${period}`
       );
       const secondResponse = await api.get(
-        `charts?period=${period}&coinId=${secondCoin.id}`
+        `coins/${secondCoin.id}/charts?period=${period}`
       );
 
-      const firstData: Array<Array<4>> = await firstResponse.data.chart;
-      const secondData: Array<Array<4>> = await secondResponse.data.chart;
+      const firstData: Array<Array<4>> = await firstResponse.data;
+      const secondData: Array<Array<4>> = await secondResponse.data;
 
       const handleCompareChartData: CompareChartData[] = [];
 

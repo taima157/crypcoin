@@ -61,9 +61,9 @@ export function CryptoProvider({ children }: ProviderProps) {
 
   async function getCoinList() {
     try {
-      const response = await api.get("coins");
+      const response = await api.get("coins?limit=1000");
 
-      return response.data.coins;
+      return response.data.result;
     } catch (error) {
       console.error(error);
     }
@@ -94,10 +94,10 @@ export function CryptoProvider({ children }: ProviderProps) {
       const currentPeriod = periodParam ? periodParam : period;
 
       const response = await api.get(
-        `charts?period=${currentPeriod}&coinId=${coin.id}`
+        `coins/${coin.id}/charts?period=${currentPeriod}`
       );
 
-      const data: Array<Array<4>> = await response.data.chart;
+      const data: Array<Array<4>> = await response.data;
 
       const handleChartData: ChartData[] = [];
 

@@ -1,5 +1,8 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://api.coinstats.app/public/v1/",
+  baseURL: "https://openapiv1.coinstats.app",
+  headers: {
+    "X-API-KEY": import.meta.env.VITE_API_KEY,
+  },
 });
